@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Todos Usuarios</h1>
+            <h1 class="m-0">Usuarios</h1>
             <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
                 <i class="fa fa-plus"></i> Crear Usuario
             </button>
@@ -44,9 +44,11 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <figure><img src="{{ $user->avatar }}" alt="" class="profile-user-img img-fluid img-circle"></figure>
+                        @if($user->avatar != null)
+                            <figure><img src="{{ $user->avatar }}" alt="" class="profile-user-img img-fluid img-circle"></figure>
+                        @endif
                     </td>
-                    <td></td>
+                    <td> {{ $user->updated_at->format('d F Y') }}</td>
                     <td>
                         <a href="{{ route('admin.user.show', $user) }}" class="btn btn-xs btn-info"><i class="fas fa-eye"></i></a>
                         <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-xs btn-info"><i class="fa fa-pencil-alt"></i></a>
@@ -62,6 +64,7 @@
 @endsection
 @push('stylesagregados')
     <!-- datatables -->
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 @endpush
 

@@ -287,3 +287,10 @@ a.btn-bar{
             height: 500px !important;
             display: block !important;
         }
+        .profile-user-img{
+            border: 3px solid #adb5bd;
+            margin: 0 auto;
+            padding: 3px;
+            width: 100px;
+            border-radius: 10% !important;
+        }

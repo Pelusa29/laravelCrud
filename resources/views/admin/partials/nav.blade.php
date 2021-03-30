@@ -8,32 +8,56 @@
         </li>
         {{--Inicia li--}}
         <li class="nav-item {{ request()->is('admin/posts*') ? 'menu-open':'' }}">
-        <a href="#" class="nav-link">
-            <i class="nav-icon fa fa-bars"></i>
-            <p>Crud Post
-                <i class="right fas fa-angle-left"></i>
-            </p>
-        </a>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="{{ route('admin.posts.index') }}" class="nav-link {{ request()->is('admin/posts') ? 'active':'' }}">
-                <i class="far fa-eye nav-icon"></i>
-                <p>Ver Posts</p>
+            <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-bars"></i>
+                <p>Crud Post
+                    <i class="right fas fa-angle-left"></i>
+                </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="{{ route('admin.posts.index') }}" class="nav-link {{ request()->is('admin/posts') ? 'active':'' }}">
+                    <i class="far fa-eye nav-icon"></i>
+                    <p>Crud Posts</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="#" data-toggle="modal" data-target="#myModal" class="nav-link {{ request()->is('admin/posts/create') ? 'active':'' }}">
+                    <i class="fas fa-pencil-alt"></i>
+                    <p>Crear Post</p>
+                </a>
+                </li>
+            </ul>
+        </li>
+        @if(Auth::user()->hasRole('admin'))
+            <li class="nav-item" {{ request()->is('admin/user*') ? 'menu-open':'' }}">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fa fa-user"></i>
+                    <p>Crud Users
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{ route('admin.user.index') }}" class="nav-link {{ request()->is('admin/user') ? 'active':'' }}">
+                        <i class="far fa-eye nav-icon"></i>
+                        <p>Listado Usuarios</p>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#" data-toggle="modal" class="nav-link">
+                        <i class="fas fa-pencil-alt"></i>
+                        <p>Crear Usuario</p>
+                    </a>
+                    </li>
+                </ul>
             </li>
-            <li class="nav-item">
-            <a href="#" data-toggle="modal" data-target="#myModal" class="nav-link {{ request()->is('admin/posts/create') ? 'active':'' }}">
-                <i class="fas fa-pencil-alt"></i>
-                <p>Crear Post</p>
-            </a>
-            </li>
-            <li class="nav-item">
-                <form method="post" action="{{ route('logout') }}">
-                    {{ csrf_field() }}
-                    <button class="btn btn-default btn-flat btn-block">Cerrar Sesión</button>
-                </form>
-            </li>
-        </ul>
+        @endif
+        <li class="nav-item">
+            <form method="post" action="{{ route('logout') }}">
+                {{ csrf_field() }}
+                <button class="btn btn-default btn-flat btn-block">Cerrar Sesión</button>
+            </form>
         </li>
     </ul>
 </nav>

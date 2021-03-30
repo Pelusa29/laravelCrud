@@ -17,7 +17,12 @@ class PostController extends Controller
     //
     public function index(){
         //$posts =  Post::all()->sortBy('updated_at');
-        $posts = auth()->user()->posts;
+        if(auth()->user()->hasRole('admin')){
+            $posts = Post::all();
+        }else{
+            $posts = auth()->user()->posts;
+        }
+
         return view('admin.posts.index',compact('posts'));
     }
 

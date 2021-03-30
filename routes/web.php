@@ -20,10 +20,14 @@ Route::group([
     Route::get('posts/create','PostController@create')->name('admin.posts.create');
     Route::post('posts','PostController@store')->name('admin.posts.store');
     Route::get('posts/{post}','PostController@edit')->name('admin.posts.edit');
-
     Route::put('posts/{post}','PostController@update')->name('admin.posts.update');
-    //Images
+
+    //Ruta para Usuarios (Ruta mimificada)
+    Route::resource('user', 'UsersController',['as'=>'admin']);
+
+    //Rutas para imagenes
     Route::post('posts/{post}/photos','PhotosController@store')->name('admin.posts.photos.store');
+    Route::post('users/{user}/photosdos','PhotosController@guardarPhoto')->name('admin.users.photos.guardarPhoto');
 
 });
 
